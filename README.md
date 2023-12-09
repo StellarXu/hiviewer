@@ -7,7 +7,8 @@ Please read README and Fits_example.ipynb in doc directory.
 ## Notes
 
 * 此射电图像包的一个简要介绍在[这里](https://zhuanlan.zhihu.com/p/595278094).
-* 欢迎关注北极熊的[zhihu](https://www.zhihu.com/people/stellarxu).
+
+* 欢迎关注astroR2的[zhihu](https://www.zhihu.com/people/stellarxu).
 
 ## Logs
 
