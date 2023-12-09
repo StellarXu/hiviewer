@@ -4,6 +4,10 @@ This code is used to: Inspect and show the fits image,  Overlap different images
 
 Please read README and Fits_example.ipynb in doc directory.
 
+## Notes
+
+* 此射电图像包的一个简要介绍在[这里](https://zhuanlan.zhihu.com/p/595278094).
+
 ## Logs
 
 * Newest version: v1.3 on 2023/01/01
