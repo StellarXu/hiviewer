@@ -17,8 +17,8 @@ This code is used to: Inspect and show the fits image,  Overlap different images
   * MESSIER_033_I_103aE_dss1.fits  Palomar天文台拍摄的光学波段的M33  (./data/)
 
 * 需要的Python包：
-    * Python3环境
-    * numpy,matplotlib,astropy,spectral-cube
+    * Python3环境（必需）
+    * numpy,matplotlib,astropy,spectral-cube（必需）
     * 重新投影需要montage_wrapper(它又需要sudo apt get montage)或者kapteyn或者reproject包
     * 寻找极值点位置需要skimage
 
@@ -99,13 +99,12 @@ This code is used to: Inspect and show the fits image,  Overlap different images
 
 ```
 from hiviewer import FitsPic
-from hiviewer.overlap import overlap_img_contour,overlap_two_contours,two_contours_with_peak
 ```
 如果按照前面的安装方法，是可以按照上面方法import的。如果安装不成功或者找不到路径，可以在同一目录下，临时添加路径
 ```
 import sys
-sys.path.append('../../../pkgs/hiviewer-master')#这是包的路径，例如前面的/test/路径
-from hiviewer import *
+sys.path.append('../../../pkgs/hiviewer-xxx')#这是包的路径，例如前面的/test/路径
+from hiviewer import FitsPic
 ```
 脚本同理
 
