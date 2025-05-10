@@ -113,7 +113,7 @@ def overlap_img_contour(bk,fo,levels,c='orange',vmin_max=None,alpha=0.8,bar_labe
     ax.grid(color = 'white', ls = 'dotted', lw = 2,alpha=0.5)   
     
     if coord_format is not None:
-        	ra=ax.coords['ra'];dec=ax.coords['dec'];ra.set_major_formatter(coord_format);dec.set_major_formatter(coord_format)
+        ra=ax.coords['ra'];dec=ax.coords['dec'];ra.set_major_formatter(coord_format);dec.set_major_formatter(coord_format)
     
     if radec_range is not None:
         xlim1,ylim1 = bk.deg2pix(radec_range[1],radec_range[2])
@@ -200,7 +200,7 @@ def two_contours_with_peaks(bk,fo,bklevels,folevels,min_distance = 2,threshold_r
     ax.scatter(px_fo2,py_fo2,marker='o',c='orange',label='foreground valley',zorder=2)
         
     if coord_format is not None:
-        	ra=ax.coords['ra'];dec=ax.coords['dec'];ra.set_major_formatter(coord_format);dec.set_major_formatter(coord_format)
+        ra=ax.coords['ra'];dec=ax.coords['dec'];ra.set_major_formatter(coord_format);dec.set_major_formatter(coord_format)
     
     ax.grid()
     if radec_range is not None:

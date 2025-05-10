@@ -179,7 +179,8 @@ class FitsPic(object):
      
 
     def plot_slice(self ,sel =0, cmap = 'gray', figsize=(6,5),picname = './',per_vmin_max = None,
-                   coord_format = None, save = False, xylim = None, vmin_max = None, cbar_label = '$\mathrm{Jy \ beam^{-1}}$'):
+                   coord_format = None, save = False, xylim = None, vmin_max = None,
+                   colorbar = True, cbar_label = '$\mathrm{Jy \ beam^{-1}}$', **kwargs):
         """
         select which slice you want.It will show a slice image.
         Or use #self.cube[sel,:,:].quicklook()#
@@ -219,25 +220,25 @@ class FitsPic(object):
         ax=fig.add_subplot(111, projection=self.wcs_cel)
         #print(f'max={self.get_slice(sel).max()},min={self.get_slice(sel).min()}')
         if vmin_max != None:
-            im=ax.imshow(self.get_slice(sel),vmin=vmin_max[0],vmax=vmin_max[1],origin='lower', cmap = cmap)
+            im=ax.imshow(self.get_slice(sel),vmin=vmin_max[0],vmax=vmin_max[1],origin='lower', cmap = cmap, **kwargs)
         else:
             if per_vmin_max == None:   
-                im=ax.imshow(self.get_slice(sel),origin='lower', cmap = cmap )
+                im=ax.imshow(self.get_slice(sel),origin='lower', cmap = cmap , **kwargs)
             else:
                 from .utils import percent_vminmax
                 data = self.get_slice(sel)
                 vmin,vmax = percent_vminmax(data,percent = per_vmin_max)
-                im=ax.imshow(self.get_slice(sel),vmin=vmin,vmax=vmax,origin='lower', cmap = cmap)
+                im=ax.imshow(self.get_slice(sel),vmin=vmin,vmax=vmax,origin='lower', cmap = cmap, **kwargs)
 
-   
-        cbar = plt.colorbar(im,pad=.01)
-        cbar.set_label(f'{cbar_label}', size=15)
+        if colorbar:
+            cbar = plt.colorbar(im,pad=.01)
+            cbar.set_label(f'{cbar_label}', size=15)
         if xylim is not None:
             xlim = xylim[:2]; ylim = xylim[-2:]
         else:
             xlim = None; ylim = None
 
-        line_set(ax, xlabel = 'RA (J2000)',ylabel = 'Dec (J2000)', xlim=xlim,ylim=ylim,)
+        line_set(ax, xlabel = 'R.A. (icrs)',ylabel = 'Decl. (icrs)', xlim=xlim,ylim=ylim,)
 
         if coord_format is not None:
             ra=ax.coords['ra'];dec=ax.coords['dec'];ra.set_major_formatter(coord_format);dec.set_major_formatter(coord_format)
@@ -480,14 +481,16 @@ class FitsPic(object):
             xlim = xylim[:2]; ylim = xylim[-2:]
         else:
             xlim = None; ylim = None
-        line_set(ax, xlabel = 'RA (J2000)',ylabel = 'Dec (J2000)', xlim=xlim,ylim=ylim,)    
+        line_set(ax, xlabel = 'R.A. (icrs)',ylabel = 'Decl. (icrs)', xlim=xlim,ylim=ylim,)    
         
         if clabel:
             ax.clabel(bx,fmt='%.1f')
         
         if coord_format is not None:
         	ra=ax.coords['ra'];dec=ax.coords['dec'];ra.set_major_formatter(coord_format);dec.set_major_formatter(coord_format)
+        
         plt.tight_layout()
+        
         if save:
             plt.savefig(picname+'_contour.png',dpi=300,bbox_inches='tight') 
         
